@@ -5,16 +5,20 @@ const start = () => {
   auto(); // 自动开启无障碍服务
   requestScreenCapture(); // 开启截屏功能
   events.observeKey(); // 启用按键监听
+  toast('启动成功');
   events.setKeyInterceptionEnabled(['volume_down'], true); // 屏蔽音量键
+  point = findPoint(); // 保存位置供下次使用
   events.onKeyDown('volume_down', () => {
     run();
   })
-  point = findPoint(); // 保存位置供下次使用
 }
 
 const run = () => {
-  clearCache();
-  beforeEnter();
+  while(true) {
+    clearCache();
+    beforeEnter();
+    get10();
+  }
 }
 
 const findPoint = () => {
@@ -33,26 +37,29 @@ const test = () => {
 const beforeEnter = () => {
   sleep(2000);
   click(point.x, point.y);
-  sleep(9000);
+  sleep(700);
   click(540, 1759); // 权限
   sleep(50);
   click(540, 1759); // 权限
   sleep(10000);
-  click(804, 1448);
+  click(804, 1448); // 同意
   sleep(1000);
-  click(916, 745);
-  sleep(4000);
-  click(533, 2198);
+  click(916, 745); // x
+  sleep(6000);
+  click(540, 2200); // 开始游戏
   sleep(10000);
+}
+const get10 = () => { // 获取每日免费礼包10钻
   click(93, 2310);
   sleep(1500);
   swipe(550, 1600, 550, 0, 500); // 滑动到最底部
   swipe(550, 1600, 550, 0, 500);
   swipe(550, 1600, 550, 0, 500);
+  sleep(1000);
   click(529, 2073); // 点击每日免费礼包
-  sleep(200);
+  sleep(1000);
   click(529, 2073); // 关闭每日免费礼包
-  sleep(200);
+  sleep(2000);
 }
 
 const clearCache = () => {
