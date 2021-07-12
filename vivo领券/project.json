@@ -1,5 +1,5 @@
 {
-  "name": "王者秒换装",
+  "name": "vivo领券",
   "main": "main.js",
   "launchConfig": {
     "hideLogs": true
@@ -7,7 +7,7 @@
   "ignore": [
       "build"
   ],
-  "packageName": "com.tian.disrobe",
+  "packageName": "com.tian.vivo",
   "versionName": "1.0.0",
   "versionCode": 1
 }

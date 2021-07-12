@@ -1,0 +1,10 @@
+{
+  "name": "微信读书自动答题",
+  "main": "main.js",
+  "ignore": [
+      "build"
+  ],
+  "packageName": "com.tian.read",
+  "versionName": "1.0.0",
+  "versionCode": 1
+}

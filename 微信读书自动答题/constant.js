@@ -1,6 +1,6 @@
 const EQUIPEMENT_COLOR_COLLECTION = {
-  'fuhuojia': ["#6cafc6",[[-3,-23,"#505f6d"],[0,18,"#dcf5eb"]]],
-  'mingdao': ["#7afcfc",[[14,-17,"#5abfe2"]]],
+  'fuhuojia': ["#6cafc6",[[-3,-23,"#505f6d"],[0,18,"#dcf5eb"],[10,2,"#603e0b"]]],
+  'mingdao': ["#6cafc6",[[-3,-23,"#505f6d"],[0,18,"#dcf5eb"],[10,2,"#603e0b"]]],
 };
 const EQUIPEMENT_POINT_COLLECTION = {
   mingdao: {

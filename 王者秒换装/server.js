@@ -1,5 +1,10 @@
 const { EQUIPEMENT_COLOR_COLLECTION, EQUIPEMENT_POINT_COLLECTION, ACTION_POINT_COLLECTION } = require('./constant.js');
-const { fuhuojia } = EQUIPEMENT_COLOR_COLLECTION; // 复活甲配置
+const { fuhuojia, mingdao } = EQUIPEMENT_COLOR_COLLECTION; // 复活甲配置
+const { preorder, six, sell, close, purchase } = ACTION_POINT_COLLECTION;
+let willSellPoint = {
+  x: 1667,
+  y: 944,
+}
 
 const run = () => {
   auto(); // 自动开启无障碍服务
@@ -13,27 +18,38 @@ const run = () => {
 
 const judge = () => {
   click(185, 440); // 点击金币
-  sleep(60);
-  const img = images.findMultiColors(captureScreen(), fuhuojia[0], fuhuojia[1], {
-    threshold: 10
-  });
-  if(img) { // 查到复活甲 切换名刀
+  sleep(66);
+  let point = searchPoint(fuhuojia);
+  if(point) { // 查到复活甲 切换名刀
     move('mingdao');
-  } else { // 查不到复活甲 切复活甲
+  } else { // 查不到复活甲 查名刀
+    point = searchPoint(mingdao);
+    if(!point) {
+      click(close.x, close.y); // 点击关闭
+      return;
+    }
     move('fuhuojia');
   }
 }
 
+const searchPoint = (weapon) => {
+  const point = images.findMultiColors(captureScreen(), weapon[0], weapon[1], {
+    region: [766, 873],
+    threshold: 20
+  });
+  willSellPoint = point;
+  return point;
+}
+
 const move = (type) => {
   const { sidebar, equipment } = EQUIPEMENT_POINT_COLLECTION[type];
-  const { preorder, six, sell, close, purchase } = ACTION_POINT_COLLECTION;
   click(sidebar.x, sidebar.y); // 点击左侧菜单栏
   sleep(15);
   click(equipment.x, equipment.y); // 点击想要购买的装备
   sleep(15);
   click(preorder.x, preorder.y); // 预购
   sleep(15);
-  click(six.x, six.y); // 点击第六格装备
+  click(willSellPoint.x, willSellPoint.y); // 点击要出售的装备
   sleep(15);
   click(sell.x, sell.y); // 出售装备
   sleep(15);
