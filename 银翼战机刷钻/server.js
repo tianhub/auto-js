@@ -1,3 +1,4 @@
+const { AD_COLOR_COLLECTION } = require('./constant.js');
 let point = {}; // 首页图标点位
 
 
@@ -17,8 +18,27 @@ const run = () => {
   while(true) {
     clearCache();
     beforeEnter();
-    get10();
+    closeAd();
+    get30();
+    // get10();
   }
+}
+
+const closeAd = () => {
+  const todayGift = searchPoint(AD_COLOR_COLLECTION.todayGift);
+  if(todayGift) {
+    click(todayGift.x, todayGift.y);
+    sleep(1000);
+  } else {
+    toast('没查到每日礼包广告')
+  }
+}
+
+const searchPoint = (colors) => {
+  const point = images.findMultiColors(captureScreen(), colors[0], colors[1], {
+    threshold: 10
+  });
+  return point;
 }
 
 const findPoint = () => {
@@ -28,6 +48,10 @@ const findPoint = () => {
     threshold: 0.8
   });
   icon.recycle();
+  if(!point) {
+    toast('未查到主页图标，程序即将退出')
+    exit();
+  }
   return point;
 }
 
@@ -41,14 +65,27 @@ const beforeEnter = () => {
   click(540, 1759); // 权限
   sleep(50);
   click(540, 1759); // 权限
-  sleep(10000);
+  sleep(9000);
   click(804, 1448); // 同意
   sleep(1000);
   click(916, 745); // x
-  sleep(6000);
+  sleep(5600);
   click(540, 2200); // 开始游戏
-  sleep(10000);
+  sleep(12800);
 }
+
+const until = (colors) => {
+  const point = searchPoint(colors);
+  if(point) {
+    toast('找到了')
+    return point;
+  } else {
+    toast('没找到')
+    sleep(5000);
+    return until(colors);
+  }
+}
+
 const get10 = () => { // 获取每日免费礼包10钻
   click(93, 2310);
   sleep(1500);
@@ -60,6 +97,19 @@ const get10 = () => { // 获取每日免费礼包10钻
   sleep(1000);
   click(529, 2073); // 关闭每日免费礼包
   sleep(2000);
+}
+
+const get30 = () => { // 获取每日免费礼包30钻
+  click(1000, 328);
+  sleep(1000);
+  click(493, 1981);
+  sleep(1000);
+  swipe(550, 1600, 550, 500, 500); // 滑动到最底部
+  sleep(1000);
+  click(888, 1693); // 点击每日免费礼包30
+  sleep(1000);
+  click(888, 1693); // 关闭每日免费礼包30
+  sleep(2500);
 }
 
 const clearCache = () => {
