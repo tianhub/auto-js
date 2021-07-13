@@ -8,8 +8,8 @@ const start = () => {
   events.observeKey(); // 启用按键监听
   toast('启动成功');
   events.setKeyInterceptionEnabled(['volume_down'], true); // 屏蔽音量键
-  point = findPoint(); // 保存位置供下次使用
   events.onKeyDown('volume_down', () => {
+    point = findPoint(); // 保存位置供下次使用
     run();
   })
 }
