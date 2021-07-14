@@ -25,12 +25,15 @@ const run = () => {
 }
 
 const closeAd = () => {
+  const flashSalve = searchPoint(AD_COLOR_COLLECTION.flashSale);
+  if(flashSalve) {
+    click(flashSalve.x, flashSalve.y);
+    sleep(1000);
+  }
   const todayGift = searchPoint(AD_COLOR_COLLECTION.todayGift);
   if(todayGift) {
     click(todayGift.x, todayGift.y);
     sleep(1000);
-  } else {
-    toast('没查到每日礼包广告')
   }
 }
 
@@ -71,18 +74,22 @@ const beforeEnter = () => {
   click(916, 745); // x
   sleep(5600);
   click(540, 2200); // 开始游戏
-  sleep(12800);
+  beforeEnterHome();
+}
+
+const beforeEnterHome = () => {
+  sleep(7000);
+  until(AD_COLOR_COLLECTION.beforeEnterHome);
+  sleep(2000);
 }
 
 const until = (colors) => {
   const point = searchPoint(colors);
   if(point) {
-    toast('找到了')
-    return point;
-  } else {
-    toast('没找到')
-    sleep(5000);
+    sleep(1000);
     return until(colors);
+  } else {
+    return point;
   }
 }
 
