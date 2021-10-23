@@ -1,0 +1,13 @@
+{
+  "name": "vivo领券新",
+  "main": "main.js",
+  "launchConfig": {
+    "hideLogs": true
+  },
+  "ignore": [
+      "build"
+  ],
+  "packageName": "com.tian.vivo.new",
+  "versionName": "1.0.0",
+  "versionCode": 1
+}
