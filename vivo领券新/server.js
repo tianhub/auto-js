@@ -26,14 +26,16 @@ const reciveGift = () => {
 
 const untilTime = () => {
   let isRight = false;
+
   while (!isRight) {
     let currentTime = new Date();
     let hour = currentTime.getHours();
     let minute = currentTime.getMinutes();
     let second = currentTime.getSeconds();
     let milliseconds = currentTime.getMilliseconds();
-    isRight = hour === testTime[0] && minute === testTime[1] && second === testTime[2] && ( milliseconds >= testTime[3][0] && milliseconds <= testTime[3][1] );
-    log(isRight);
+    let duihuanbtn = className("android.view.View").text("兑换").findOnce();
+    let rightTime = hour === testTime[0] && minute === testTime[1] && second === testTime[2] && ( milliseconds >= testTime[3][0] && milliseconds <= testTime[3][1] );
+    isRight = rightTime || duihuanbtn;
     sleep(40);
   }
   refresh();
