@@ -7,10 +7,10 @@ const refresh = () => { // 刷新页面
 
 const reciveGift = () => {
   for(;;) {
-    let duihuan = className("android.view.View").text("兑换").findOne(3000);
+    let duihuan = className("android.view.View").text("兑换").findOne(5000);
     if (duihuan) {
       duihuan.click();
-      let confirm = className("android.view.View").text("确认兑换").findOne(3000);
+      let confirm = className("android.view.View").text("确认兑换").findOne(5000);
       if (confirm) {
         confirm.click();
       } else {
