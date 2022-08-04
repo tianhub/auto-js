@@ -8,6 +8,7 @@ const start = () => {
   auto(); // 自动开启无障碍服务
   events.observeKey(); // 启用按键监听
   events.setKeyInterceptionEnabled(['volume_down'], true); // 屏蔽音量键
+  toastLog('服务启动');
   events.onKeyDown('volume_down', function() {
     run();
   })
@@ -44,7 +45,7 @@ const run = () => {
         all.forEach((current) => {
           if (current.clickable) {
             current.click();
-            sleep(6);
+            sleep(1);
             count = count + 1;
           }
         });
